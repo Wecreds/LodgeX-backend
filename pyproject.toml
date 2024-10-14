@@ -1,0 +1,33 @@
+[project]
+name = "BellaVista-backend"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Wecreds", email = "Wecredsbr@gmail.com"},
+]
+dependencies = [
+    "django>=5.1.2",
+    "dotenv>=0.0.5",
+    "django-cors-headers>=4.5.0",
+    "python-dotenv>=1.0.1",
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[[tool.pdm.autoexport]]
+filename = "requirements.txt"
+without-hashes = "true"
+
+
+[tool.pdm.scripts]
+dev = "python manage.py runserver 0.0.0.0:19003"
+createsuperuser = "python manage.py createsuperuser"
+pre_migrate = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
+shell = "python manage.py shell"
+shellp= "python manage.py shell_plus"
