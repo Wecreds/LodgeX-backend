@@ -31,7 +31,9 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser, PermissionsMixin):
-
+    def jsonfield_default_value(): 
+        return {"birth_date": "", "nationality": "", "street_address": "", "city":"", "state": "", "postal_code": "", "country": ""} 
+    
     email = models.EmailField(
         max_length=255,
         unique=True,
@@ -65,8 +67,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         related_name='custom_permission_user_set', 
         blank=True
     )
-    is_staff = models.BooleanField(default=False)
-
+    is_staff = models.BooleanField(
+        default=False,
+        verbose_name=_("Usuário é um funcionário"),
+        help_text=_("Indica que este usuário é um funcionário da empresa.")    
+    )
+    personal_info = models.JSONField(null=True, default=jsonfield_default_value)
+    
     objects = UserManager()
 
     USERNAME_FIELD = "email"
