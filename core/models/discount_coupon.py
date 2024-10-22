@@ -1,7 +1,7 @@
 from django.db import models
 
 class DiscountCoupon(models.Model):
-    code = models.CharField(max_length=10, null=False)
+    code = models.CharField(max_length=10, null=False, unique=True)
     discount_percentage = models.IntegerField(default=0, null=False)
     expiration_date = models.DateField(null=False)
     description = models.CharField(max_length=200)
