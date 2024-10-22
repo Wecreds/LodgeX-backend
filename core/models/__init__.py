@@ -5,3 +5,4 @@ from .service import Service
 from .promotion import Promotion
 from .room import Room
 from .booking import Booking
+from .room_availability import RoomAvailability

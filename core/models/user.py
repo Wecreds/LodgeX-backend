@@ -72,6 +72,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name=_("Usuário é um funcionário"),
         help_text=_("Indica que este usuário é um funcionário da empresa.")    
     )
+    """
+    
+    """
     personal_info = models.JSONField(null=True, default=jsonfield_default_value)
     
     objects = UserManager()
