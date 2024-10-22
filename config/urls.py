@@ -24,6 +24,7 @@ from core import views
 router = DefaultRouter()
 router.register(r"categories", views.CategoryViewSet)
 router.register(r"discount-coupon", views.DiscountCouponViewSet)
+router.register(r"services", views.ServiceViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
