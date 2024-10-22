@@ -2,6 +2,7 @@ from django.db import models
 from core.models import Promotion, Category
 
 class Room(models.Model):
+    name = models.CharField(max_length=100, null=True)
     single_beds = models.IntegerField()
     couple_beds = models.IntegerField()
     price_by_day = models.DecimalField(max_digits=5, decimal_places=2)
@@ -31,10 +32,9 @@ class Room(models.Model):
         default=None
     )
 
-
     def __str__(self):
-        return self.description
+        return self.name
     
     class Meta:
-        verbose_name = "Promotion"
-        verbose_name_plural = "Promotions"
+        verbose_name = "Room"
+        verbose_name_plural = "Rooms"

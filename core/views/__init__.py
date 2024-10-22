@@ -4,3 +4,4 @@ from .discount_coupon import DiscountCouponViewSet
 from .service import ServiceViewSet
 from .promotion import PromotionViewSet
 from .room import RoomViewSet
+from .booking import BookingViewSet
