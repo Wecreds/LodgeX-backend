@@ -8,3 +8,7 @@ class DiscountCoupon(models.Model):
 
     def __str__(self):
         return self.code
+    
+    class Meta:
+        verbose_name = "Discount Coupon"
+        verbose_name_plural = "Discount Coupons"
