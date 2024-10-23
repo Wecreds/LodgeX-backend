@@ -9,3 +9,4 @@ from .room_availability import RoomAvailabilitySerializer
 from .booking_service import BookingServiceSerializer
 from .cancellation import CancellationSerializer
 from .payment import PaymentSerializer
+from .feedback import FeedbackSerializer

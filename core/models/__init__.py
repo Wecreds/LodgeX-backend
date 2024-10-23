@@ -9,3 +9,4 @@ from .room_availability import RoomAvailability
 from .booking_service import BookingService
 from .cancellation import Cancellation
 from .payment import Payment
+from .feedback import Feedback

@@ -32,6 +32,7 @@ router.register(r"room-availability", views.RoomAvailabilityViewSet)
 router.register(r"booking-service", views.BookingServiceViewSet)
 router.register(r"cancellations", views.CancellationViewSet)
 router.register(r"payments", views.PaymentViewSet)
+router.register(r"feedbacks", views.FeedbackViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
