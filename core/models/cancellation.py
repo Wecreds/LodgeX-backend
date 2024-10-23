@@ -5,7 +5,7 @@ from django.utils import timezone
 class Cancellation(models.Model):
     reason = models.CharField(max_length=255, null=False, blank=False, default="No reason given.")
     cancellation_fee = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.0)
-    cancellation_date = models.DateField(null=False, blank=False, default=timezone.now().date())
+    cancellation_date = models.DateField(null=False, blank=False, default=timezone.now)
     booking = models.ForeignKey(
         Booking,
         on_delete=models.CASCADE,
