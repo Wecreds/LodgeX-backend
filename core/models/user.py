@@ -8,6 +8,8 @@ from django.contrib.auth.models import (
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from uploader.models import Image
+
 class UserManager(BaseUserManager):
 
     use_in_migrations = True
@@ -50,12 +52,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     telephone = models.IntegerField(
         unique=True,
         verbose_name=_("telephone"),
-        help_text=_("Telefone celular do usuário.")
+        help_text=_("User's cell phone.")
     )
     is_active = models.BooleanField(
         default=True,
-        verbose_name=_("Usuário está ativo"),
-        help_text=_("Indica que este usuário está ativo.")
+        verbose_name=_("User is active"),
+        help_text=_("Indicates that this user is active.")
     )
     groups = models.ManyToManyField(
         Group,
@@ -69,13 +71,22 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     is_staff = models.BooleanField(
         default=False,
-        verbose_name=_("Usuário é um funcionário"),
-        help_text=_("Indica que este usuário é um funcionário da empresa.")    
+        verbose_name=_("User is an employee"),
+        help_text=_("Indicates that this user is a company employee.")    
     )
-    """
-    
-    """
-    personal_info = models.JSONField(null=True, default=jsonfield_default_value)
+    personal_info = models.JSONField(
+        null=True, 
+        help_text=_("Personal info about the User."),    
+        default=jsonfield_default_value
+    )
+    document = models.ForeignKey(
+        Image,
+        related_name="+",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        default=None,
+    )
     
     objects = UserManager()
 

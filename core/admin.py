@@ -40,6 +40,7 @@ class UserAdmin(BaseUserAdmin):
                     "is_active",
                     "is_staff",
                     "is_superuser",
+                    "document",
                     "groups",
                     "user_permissions",
                 ),
