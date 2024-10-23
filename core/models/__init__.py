@@ -6,3 +6,4 @@ from .promotion import Promotion
 from .room import Room
 from .booking import Booking
 from .room_availability import RoomAvailability
+from .booking_service import BookingService

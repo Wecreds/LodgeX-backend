@@ -6,3 +6,4 @@ from .promotion import PromotionViewSet
 from .room import RoomViewSet
 from .booking import BookingViewSet
 from .room_availability import RoomAvailabilityViewSet
+from .booking_service import BookingServiceViewSet
