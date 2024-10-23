@@ -10,3 +10,4 @@ from .booking_service import BookingServiceViewSet
 from .cancellation import CancellationViewSet
 from .payment import PaymentViewSet
 from .feedback import FeedbackViewSet
+from .booking_room import BookingRoomViewSet

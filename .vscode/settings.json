@@ -5,4 +5,5 @@
   "python.autoComplete.extraPaths": [
     "${workspaceFolder}/__pypackages__/3.12/lib"
   ]
+  
 }

@@ -10,3 +10,4 @@ from .booking_service import BookingService
 from .cancellation import Cancellation
 from .payment import Payment
 from .feedback import Feedback
+from .booking_room import BookingRoom
