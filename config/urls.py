@@ -42,6 +42,7 @@ router.register(r"room-photos", views.RoomPhotoViewSet)
 
 urlpatterns = [
     path("api/media/", include(uploader_router.urls)),
+    path('check-coupon/<str:code>/', views.CheckDiscountCouponView.as_view(), name='check_coupon'),
     path('admin/', admin.site.urls),
     path("", include(router.urls)),
 ]

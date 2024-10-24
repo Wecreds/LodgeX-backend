@@ -12,3 +12,4 @@ from .payment import PaymentViewSet
 from .feedback import FeedbackViewSet
 from .booking_room import BookingRoomViewSet
 from .room_photo import RoomPhotoViewSet
+from .custom.check_discount_code import CheckDiscountCouponView
