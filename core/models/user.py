@@ -49,6 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         blank=False,
         null=False,
+        default="No user name given.",
         verbose_name=_("name"),
         help_text=_("Username")
     )
