@@ -15,3 +15,15 @@ class FeedbackViewSet(ModelViewSet):
         queryset = Feedback.objects.filter(review_status=Feedback.FeedbackStatus.APPROVED)
         serializer = FeedbackSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=["get"])
+    def pending(self, request):
+        queryset = Feedback.objects.filter(review_status=Feedback.FeedbackStatus.PENDING)
+        serializer = FeedbackSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=["get"])
+    def declined(self, request):
+        queryset = Feedback.objects.filter(review_status=Feedback.FeedbackStatus.DECLINED)
+        serializer = FeedbackSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
