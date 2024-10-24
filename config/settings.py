@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-     'uploader',
+    'rest_framework_simplejwt',
+    'uploader',
     'core',
 ]
 
@@ -131,3 +132,14 @@ MEDIA_URL = "http://localhost:19003/media/"
 MEDIA_ENDPOINT = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 FILE_UPLOAD_PERMISSIONS = 0o640
+
+# Rest Framework settings
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissions",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+}
+
+# Changing default user model
+AUTH_USER_MODEL = "core.User"
