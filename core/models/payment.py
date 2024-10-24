@@ -42,15 +42,15 @@ class Payment(models.Model):
             if self.booking.discount_coupon:
                 discount = (total_price * self.booking.discount_coupon.discount_percentage) / 100
                 total_price -= discount
-            
-            if BookingService.objects.filter(booking=self.booking).exists():
-                booking_services = BookingService.objects.filter(booking=self.booking)
-                self.service_price = 0
-                for booking_service in booking_services:
-                    self.service_price += booking_service.service.price
 
             self.booking_price = total_price
         
+        if BookingService.objects.filter(booking=self.booking).exists():
+            booking_services = BookingService.objects.filter(booking=self.booking)
+            self.service_price = 0
+            for booking_service in booking_services:
+                self.service_price += booking_service.service.price
+
         if self.payment_status == 2 and self.payment_date is None:
             self.payment_date = timezone.now().date()
         
