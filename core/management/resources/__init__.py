@@ -5,3 +5,8 @@ from .data_discount_coupon import discount_coupons
 from .data_group import groups
 from .data_user import users
 from .data_booking import bookings
+from .data_booking_service import booking_services
+from .data_cancellation import cancellations
+from .data_booking_room import booking_rooms
+from .data_room_availability import rooms_availability
+from .data_payment import payments

@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand
-from core.models import Category, Room, Service, DiscountCoupon, User, Booking
+from core.models import Category, Room, Service, DiscountCoupon, User, Booking, BookingService, Cancellation, BookingRoom, RoomAvailability, Payment
 from django.contrib.auth.models import Group, Permission
 
-from core.management.resources import categories, rooms, services, discount_coupons, groups, users, bookings
+from core.management.resources import categories, rooms, services, discount_coupons, groups, users, bookings, booking_services, cancellations, booking_rooms, rooms_availability, payments
 
 class Command(BaseCommand):
     help = 'Populates the database.'
@@ -94,6 +94,7 @@ class Command(BaseCommand):
                 user_instance = User.objects.get(id=booking["user"])
                 booking_instance = Booking(
                     user=user_instance,
+                    booking_status=booking.get("booking_status", 1)
                 )
                 discount_coupon_id = booking.get("discount_coupon")
                 if discount_coupon_id:
@@ -103,5 +104,90 @@ class Command(BaseCommand):
 
             Booking.objects.bulk_create(booking_instances)
             self.stdout.write(self.style.SUCCESS('Bookings populated successfully.'))
+        
+        # Populates the booking services.
+        if BookingService.objects.exists():
+            self.stdout.write(self.style.WARNING('Booking Services already exist in the database.'))
+        else:
+            booking_service_instances = []
+            for booking_service in booking_services:
+                service_instance = Service.objects.get(id=booking_service["service"])
+                booking_instance = Booking.objects.get(id=booking_service["booking"])
+                booking_service_instance = BookingService(
+                    service=service_instance,
+                    booking=booking_instance
+                )
+                booking_service_instances.append(booking_service_instance)
+
+            BookingService.objects.bulk_create(booking_service_instances)
+            self.stdout.write(self.style.SUCCESS('Booking Services populated successfully.'))
+        
+        # Populates the cancellations.
+        if Cancellation.objects.exists():
+            self.stdout.write(self.style.WARNING('Cancellations already exist in the database.'))
+        else:
+            cancellation_instances = []
+            for cancellation in cancellations:
+                booking_instance = Booking.objects.get(id=cancellation["booking"])
+                cancellation_instance = Cancellation(
+                    reason=cancellation["reason"],
+                    booking=booking_instance
+                )
+                cancellation_instances.append(cancellation_instance)
+
+            Cancellation.objects.bulk_create(cancellation_instances)
+            self.stdout.write(self.style.SUCCESS('Cancellations populated successfully.'))
+        
+        # Populates the booking rooms.
+        if BookingRoom.objects.exists():
+            self.stdout.write(self.style.WARNING('Booking Rooms already exist in the database.'))
+        else:
+            booking_room_instances = []
+            for booking_room in booking_rooms:
+                room_instance = Room.objects.get(id=booking_room["room"])
+                booking_instance = Booking.objects.get(id=booking_room["booking"])
+                booking_room_instance = BookingRoom(
+                    room=room_instance,
+                    booking=booking_instance
+                )
+                booking_room_instances.append(booking_room_instance)
+
+            BookingRoom.objects.bulk_create(booking_room_instances)
+            self.stdout.write(self.style.SUCCESS('Booking Rooms populated successfully.'))
+        
+        # Populates the rooms availability.
+        if RoomAvailability.objects.exists():
+            self.stdout.write(self.style.WARNING('Rooms Availability already exist in the database.'))
+        else:
+            room_availability_instances = []
+            for room_availability in rooms_availability:
+                room_instance = Room.objects.get(id=room_availability["room"])
+                booking_instance = Booking.objects.get(id=room_availability["booking"])
+                room_availability_instance = RoomAvailability(
+                    start_date=room_availability["start_date"],
+                    end_date=room_availability["end_date"],
+                    room_status=room_availability["room_status"],
+                    reason=room_availability.get("reason", None),
+                    booking=booking_instance,
+                    room=room_instance
+                )
+                room_availability_instances.append(room_availability_instance)
+
+            RoomAvailability.objects.bulk_create(room_availability_instances)
+            self.stdout.write(self.style.SUCCESS('Rooms Availability populated successfully.'))
+        
+        # Populates the payments.
+        if Payment.objects.exists():
+            self.stdout.write(self.style.WARNING('Payments already exist in the database.'))
+        else:
+            for payment in payments:
+                booking_instance = Booking.objects.get(id=payment["booking"])
+                # Since the bulk_create doesnt activate the save method, we need to create the models one by one.
+                Payment.objects.create(
+                    booking=booking_instance,
+                    payment_status=payment["payment_status"]
+                )
+
+            self.stdout.write(self.style.SUCCESS('Payments populated successfully.'))
 
         self.stdout.write('Successfully populated the database.')
