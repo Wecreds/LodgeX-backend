@@ -1,0 +1,42 @@
+rooms = [
+    {
+        "name": "G1",
+        "single_beds": 2,
+        "couple_beds": 1,
+        "price_by_day": 100.00,
+        "description": "Private room with two single beds and a double bed, with bathroom.",
+        "category": 4,
+    },
+    {
+        "name": "G2",
+        "single_beds": 2,
+        "couple_beds": 1,
+        "price_by_day": 100.00,
+        "description": "Private room with two single beds and a double bed, with bathroom.",
+        "category": 4,
+    },
+    {
+        "name": "G3",
+        "single_beds": 4,
+        "couple_beds": 1,
+        "price_by_day": 90.00,
+        "description": "Private room with four single beds and one double bed, no bathroom.",
+        "category": 1,
+    },
+    {
+        "name": "G4",
+        "single_beds": 8,
+        "couple_beds": 0,
+        "price_by_day": 70.00,
+        "description": "Shared room with eight single beds, no bathroom.",
+        "category": 3,
+    },
+    {
+        "name": "G5",
+        "single_beds": 0,
+        "couple_beds": 1,
+        "price_by_day": 90.00,
+        "description": "Private Room with one double bed, with bathroom.",
+        "category": 2,
+    },
+]
