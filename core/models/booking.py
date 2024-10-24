@@ -8,8 +8,8 @@ class Booking(models.Model):
         CANCELED = 2, "CANCELED"
         COMPLETED = 3, "COMPLETED"
 
-    booking_status = models.IntegerField(choices=BookingStatus, default=BookingStatus.ACTIVE)
-    booking_date = models.DateField(default=timezone.now)
+    booking_status = models.IntegerField(choices=BookingStatus, default=BookingStatus.ACTIVE, null=False, blank=False)
+    booking_date = models.DateField(default=timezone.now, null=False, blank=False)
     discount_coupon = models.ForeignKey(
         DiscountCoupon, 
         on_delete=models.PROTECT, 

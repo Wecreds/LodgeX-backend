@@ -11,9 +11,9 @@ class Feedback(models.Model):
         DECLINED = 2, "DECLINED"
         APPROVED = 3, "APPROVED"
     
-    review_status = models.IntegerField(null=True, blank=True, choices=FeedbackStatus, default=FeedbackStatus.PENDING)
+    review_status = models.IntegerField(null=False, blank=False, choices=FeedbackStatus, default=FeedbackStatus.PENDING)
     rating = models.DecimalField(max_digits=2, decimal_places=1, null=False, blank=False, default=1, validators= [MinValueValidator(1), MaxValueValidator(5)])
-    comment = models.CharField(null=False, blank=False, max_length=255, default="No comments.")
+    comment = models.CharField(null=False, blank=False, max_length=255, default="No comment given.")
     feedback_date = models.DateField(null=False, blank=False, default=timezone.now)
     booking = models.ForeignKey(
         Booking, 

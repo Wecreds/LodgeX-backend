@@ -6,9 +6,9 @@ class RoomAvailability(models.Model):
         RESERVED = 1, "RESERVED"
         MAINTENANCE = 2, "MAINTENANCE"
 
-    start_date = models.DateField()
-    end_date = models.DateField()
-    room_status = models.IntegerField(choices=RoomStatus, default=RoomStatus.RESERVED)
+    start_date = models.DateField(null=False, blank=False)
+    end_date = models.DateField(null=False, blank=False)
+    room_status = models.IntegerField(choices=RoomStatus, default=RoomStatus.RESERVED, null=False, blank=False)
     reason = models.CharField(max_length=200, null=True, blank=True)
     booking = models.ForeignKey(
         Booking, 

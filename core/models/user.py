@@ -39,19 +39,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     email = models.EmailField(
         max_length=255,
+        null=False,
+        blank=False,
         unique=True,
         verbose_name=_("email"),
         help_text=_("Email")
         )
     name = models.CharField(
         max_length=255,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         verbose_name=_("name"),
         help_text=_("Username")
     )
     telephone = models.IntegerField(
         unique=True,
+        blank=True,
+        null=True,
         verbose_name=_("telephone"),
         help_text=_("User's cell phone.")
     )
@@ -79,7 +83,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=timezone.now,
     )
     personal_info = models.JSONField(
-        null=True, 
+        null=False, 
+        blank=False,
         help_text=_("Personal info about the User."),    
         default=jsonfield_default_value
     )

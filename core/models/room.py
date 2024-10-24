@@ -2,11 +2,11 @@ from django.db import models
 from core.models import Category
 
 class Room(models.Model):
-    name = models.CharField(max_length=100, null=True)
-    single_beds = models.IntegerField()
-    couple_beds = models.IntegerField()
-    price_by_day = models.DecimalField(max_digits=5, decimal_places=2)
-    description = models.CharField(max_length=400)
+    name = models.CharField(max_length=100, null=False, blank=False)
+    single_beds = models.IntegerField(null=False, blank=False, default=0)
+    couple_beds = models.IntegerField(null=False, blank=False, default=0)
+    price_by_day = models.DecimalField(max_digits=5, decimal_places=2, null=False, blank=False, default=0)
+    description = models.CharField(max_length=400, null=False, blank=False, default="No description given.")
     """
     photos = models.ForeignKey(
         Image,
@@ -19,7 +19,7 @@ class Room(models.Model):
     """
     category = models.ForeignKey(
         Category,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         null=False,
         blank=False,
         default=None

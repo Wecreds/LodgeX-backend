@@ -13,11 +13,11 @@ class Payment(models.Model):
         CASH = 3, "CASH"
         PIX = 4, "PIX"
 
-    payment_status = models.IntegerField(choices=PaymentStatus, default=PaymentStatus.PENDING)
+    payment_status = models.IntegerField(choices=PaymentStatus, default=PaymentStatus.PENDING, null=False, blank=False)
     booking_price = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.0)
     service_price = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.0)
     payment_date = models.DateField(null=True, blank=True)
-    payment_method = models.IntegerField(choices=PaymentMethod, default=PaymentMethod.PIX)
+    payment_method = models.IntegerField(choices=PaymentMethod, default=PaymentMethod.PIX, null=False, blank=False)
     booking = models.ForeignKey(
         Booking, 
         on_delete=models.CASCADE, 
