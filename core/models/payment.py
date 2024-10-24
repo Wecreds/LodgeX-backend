@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import Booking, BookingRoom, RoomAvailability
+from core.models import Booking, BookingRoom, RoomAvailability, BookingService
 from django.utils import timezone
 
 class Payment(models.Model):
@@ -41,6 +41,11 @@ class Payment(models.Model):
             if self.booking.discount_coupon:
                 discount = (total_price * self.booking.discount_coupon.discount_percentage) / 100
                 total_price -= discount
+            
+            if BookingService.objects.filter(booking=self.booking).exists():
+                booking_services = BookingService.objects.filter(booking=self.booking)
+                for booking_service in booking_services:
+                    total_price += booking_service.service.price
 
             self.payment_price = total_price
         
