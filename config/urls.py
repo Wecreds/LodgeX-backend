@@ -38,6 +38,7 @@ router.register(r"cancellations", views.CancellationViewSet)
 router.register(r"payments", views.PaymentViewSet)
 router.register(r"feedbacks", views.FeedbackViewSet)
 router.register(r"bookings-rooms", views.BookingRoomViewSet)
+router.register(r"room-photos", views.RoomPhotoViewSet)
 
 urlpatterns = [
     path("api/media/", include(uploader_router.urls)),

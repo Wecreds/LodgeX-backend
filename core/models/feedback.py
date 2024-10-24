@@ -31,7 +31,7 @@ class Feedback(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user} - {self.booking}({self.review_status})"
+        return f"{self.user.name} ({self.feedback_date}) - Review: {self.get_review_status_display()}"
     
     class Meta:
         verbose_name = "Feedback"

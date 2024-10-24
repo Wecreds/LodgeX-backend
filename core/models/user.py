@@ -7,6 +7,7 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
 from uploader.models import Image
 
@@ -73,6 +74,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=False,
         verbose_name=_("User is an employee"),
         help_text=_("Indicates that this user is a company employee.")    
+    )
+    created_at = models.DateTimeField(
+        default=timezone.now,
     )
     personal_info = models.JSONField(
         null=True, 

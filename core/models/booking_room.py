@@ -18,7 +18,7 @@ class BookingRoom(models.Model):
     )
 
     def __str__(self):
-        return f"{self.room} - {self.booking}"
+        return f"{self.room} - {self.booking.user.name}  ({self.booking.booking_date})"
     
     class Meta:
         verbose_name = "Booking Room"

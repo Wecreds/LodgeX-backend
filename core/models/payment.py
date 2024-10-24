@@ -32,7 +32,7 @@ class Payment(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.booking} - {self.payment_date}({self.payment_status})"
+        return f"{self.booking.user.name} ({self.booking.booking_date}) - Status: {self.get_payment_status_display()}"
     
     class Meta:
         verbose_name = "Payment"

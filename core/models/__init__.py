@@ -11,3 +11,4 @@ from .cancellation import Cancellation
 from .payment import Payment
 from .feedback import Feedback
 from .booking_room import BookingRoom
+from .room_photo import RoomPhoto

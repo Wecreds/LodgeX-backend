@@ -1,5 +1,6 @@
 from django.db import models
 from core.models import DiscountCoupon, User
+from django.utils import timezone
 
 class Booking(models.Model):
     class BookingStatus(models.IntegerChoices):
@@ -8,7 +9,7 @@ class Booking(models.Model):
         COMPLETED = 3, "COMPLETED"
 
     booking_status = models.IntegerField(choices=BookingStatus, default=BookingStatus.ACTIVE)
-    booking_date = models.DateField()
+    booking_date = models.DateField(default=timezone.now)
     discount_coupon = models.ForeignKey(
         DiscountCoupon, 
         on_delete=models.PROTECT, 
@@ -25,7 +26,7 @@ class Booking(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user} - {self.booking_date}"
+        return f"{self.user.name} ({self.booking_date}) - ({self.get_booking_status_display()})"
     
     class Meta:
         verbose_name = "Booking"

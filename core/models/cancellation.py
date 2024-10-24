@@ -15,7 +15,7 @@ class Cancellation(models.Model):
     )
 
     def __str__(self):
-        return f"{self.booking} - {self.cancellation_date}"
+        return f"{self.booking.user.name} ({self.cancellation_date})"
     
     class Meta:
         verbose_name = "Cancellation"

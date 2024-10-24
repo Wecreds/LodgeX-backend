@@ -26,7 +26,7 @@ class RoomAvailability(models.Model):
     )
 
     def __str__(self):
-        return f"{self.room.name} - {self.start_date} until {self.end_date}"
+        return f"{self.booking.user.name} {self.room.name} - {self.start_date} until {self.end_date}"
     
     class Meta:
         verbose_name = "Room Availability"

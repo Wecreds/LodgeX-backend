@@ -6,10 +6,10 @@ from core import models
 
 class UserAdmin(BaseUserAdmin):
     ordering = ["id"]
-    list_display = ["email", "name"]
+    list_display = ["name", "email"]
     fieldsets = (
         (None, {"fields": ("email", "password")}),
-        (_("Personal Info"), {"fields": ("name", "personal_info")}),
+        (_("Personal Info"), {"fields": ("name", "personal_info", "telephone", "document")}),
         (
             _("Permissions"),
             {
@@ -20,11 +20,11 @@ class UserAdmin(BaseUserAdmin):
                 )
             },
         ),
-        (_("Important dates"), {"fields": ("last_login",)}),
+        (_("Important dates"), {"fields": ("last_login", "created_at") }),
         (_("Groups"), {"fields": ("groups",)}),
         (_("User Permissions"), {"fields": ("user_permissions",)}),
     )
-    readonly_fields = ["last_login"]
+    readonly_fields = ["last_login", "created_at"]
     add_fieldsets = (
         (
             None,
@@ -62,3 +62,4 @@ admin.site.register(models.Cancellation)
 admin.site.register(models.Payment)
 admin.site.register(models.Feedback)
 admin.site.register(models.BookingRoom)
+admin.site.register(models.RoomPhoto)
