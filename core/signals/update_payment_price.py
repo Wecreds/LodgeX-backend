@@ -5,7 +5,6 @@ from core.models import BookingService, Payment
 
 @receiver(post_save, sender=BookingService)
 def update_payment_price(sender, instance, created, **kwargs):
-    if created:
         payment = Payment.objects.filter(booking=instance.booking).first()
         if payment:
             payment.save()

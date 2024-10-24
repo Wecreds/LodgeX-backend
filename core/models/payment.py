@@ -14,7 +14,8 @@ class Payment(models.Model):
         PIX = 4, "PIX"
 
     payment_status = models.IntegerField(choices=PaymentStatus, default=PaymentStatus.PENDING)
-    payment_price = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.0)
+    booking_price = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.0)
+    service_price = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.0)
     payment_date = models.DateField(null=True, blank=True)
     payment_method = models.IntegerField(choices=PaymentMethod, default=PaymentMethod.PIX)
     booking = models.ForeignKey(
@@ -44,14 +45,15 @@ class Payment(models.Model):
             
             if BookingService.objects.filter(booking=self.booking).exists():
                 booking_services = BookingService.objects.filter(booking=self.booking)
+                self.service_price = 0
                 for booking_service in booking_services:
-                    total_price += booking_service.service.price
+                    self.service_price += booking_service.service.price
 
-            self.payment_price = total_price
+            self.booking_price = total_price
         
         if self.payment_status == 2 and self.payment_date is None:
             self.payment_date = timezone.now().date()
-
+        
         super().save(*args, **kwargs)
 
     def __str__(self):
