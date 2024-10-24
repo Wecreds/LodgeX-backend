@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import Promotion, Category
+from core.models import Category
 
 class Room(models.Model):
     name = models.CharField(max_length=100, null=True)
@@ -17,13 +17,6 @@ class Room(models.Model):
         default=None,
     )
     """
-    promotion = models.ForeignKey(
-        Promotion, 
-        on_delete=models.PROTECT, 
-        null=True, 
-        blank=True, 
-        default=None
-    )
     category = models.ForeignKey(
         Category,
         on_delete=models.PROTECT,
