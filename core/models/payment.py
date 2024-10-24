@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import Booking
+from core.models import Booking, BookingRoom, RoomAvailability
 from django.utils import timezone
 
 class Payment(models.Model):
@@ -26,7 +26,25 @@ class Payment(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        if self.payment_status == self.PaymentStatus.PAID and self.payment_date is None:
+        if self.payment_status == self.PaymentStatus.PENDING:
+            total_price = 0
+            booking_rooms = BookingRoom.objects.filter(booking=self.booking) 
+            booking_availabilitys = RoomAvailability.objects.filter(booking=self.booking)
+
+            for booking_room in booking_rooms:
+                for booking_availability in booking_availabilitys:
+                    if booking_availability.room == booking_room.room:  
+                        days_stayed = (booking_availability.end_date - booking_availability.start_date).days
+                        room_price = booking_room.room.price_by_day * days_stayed   
+                        total_price += room_price 
+
+            if self.booking.discount_coupon:
+                discount = (total_price * self.booking.discount_coupon.discount_percentage) / 100
+                total_price -= discount
+
+            self.payment_price = total_price
+        
+        if self.payment_status == 2 and self.payment_date is None:
             self.payment_date = timezone.now().date()
 
         super().save(*args, **kwargs)
