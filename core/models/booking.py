@@ -26,7 +26,7 @@ class Booking(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user.name} ({self.booking_date}) - ({self.get_booking_status_display()})"
+        return f"{self.user.name} ({self.booking_date}) - ({self.get_booking_status_display()}) - ID:{self.id}"
     
     class Meta:
         verbose_name = "Booking"

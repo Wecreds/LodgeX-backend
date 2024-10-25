@@ -7,7 +7,7 @@ class DiscountCoupon(models.Model):
     description = models.CharField(max_length=200, null=False, blank=False, default="No description given.")
 
     def __str__(self):
-        return f"{self.code} - Expiration: {self.expiration_date} ({self.discount_percentage}% Discount)"
+        return f"{self.code} - Expiration: {self.expiration_date} ({self.discount_percentage}% Discount) - ID:{self.id}"
     
     class Meta:
         verbose_name = "Discount Coupon"

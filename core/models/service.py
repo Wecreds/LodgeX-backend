@@ -6,7 +6,7 @@ class Service(models.Model):
     description = models.CharField(max_length=200, null=False, blank=False, default="No description given.")
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - ID:{self.id}"
     
     class Meta:
         verbose_name = "Service"

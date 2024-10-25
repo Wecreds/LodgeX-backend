@@ -21,7 +21,7 @@ class RoomPhoto(models.Model):
     )
 
     def __str__(self):
-        return f"{self.room} - {self.photo.description}"
+        return f"{self.room} - {self.photo.description} - ID:{self.id}"
     
     class Meta:
         verbose_name = "Room Photo"
