@@ -50,6 +50,7 @@ router.register(r"payments", views.PaymentViewSet)
 router.register(r"feedbacks", views.FeedbackViewSet)
 router.register(r"bookings-rooms", views.BookingRoomViewSet)
 router.register(r"room-photos", views.RoomPhotoViewSet)
+router.register(r"users", views.UserViewSet)
 
 urlpatterns = [
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
