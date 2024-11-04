@@ -37,3 +37,10 @@ migrate = "python manage.py migrate"
 shell = "python manage.py shell"
 shellp= "python manage.py shell_plus"
 populate = "pdm run python manage.py populate"
+clear.composite = [
+    'find . -name "__pycache__" -type d -exec rm -r {} +',
+    'find . -path "*/migrations/*.pyc" -delete',
+    'find . -path "*/migrations/*.py" -not -name "__init__.py" -delete',
+    'rm -rf __pypackages__ pdm.lock',
+    'rm db.sqlite3',
+]
