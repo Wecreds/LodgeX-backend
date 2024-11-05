@@ -35,7 +35,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     def jsonfield_default_value(): 
-        return {"birth_date": "", "nationality": "", "street_address": "", "city":"", "state": "", "postal_code": "", "country": ""} 
+        return {"birthDate": "", "nationality": "", "streetAddress": "", "city":"", "state": "", "postalCode": "", "country": ""} 
     
     email = models.EmailField(
         max_length=255,

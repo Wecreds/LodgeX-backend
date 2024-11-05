@@ -58,4 +58,4 @@ class UserViewSet(ModelViewSet):
         if authenticate(email=user.email, password=password):
             return Response({"verified": True}, status=status.HTTP_200_OK)
         else:
-            return Response({"verified": False}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"verified": False}, status=status.HTTP_200_OK)
