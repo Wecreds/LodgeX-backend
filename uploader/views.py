@@ -1,5 +1,5 @@
 from rest_framework import mixins, parsers, viewsets
-
+from rest_framework.permissions import  AllowAny, IsAuthenticated
 from uploader.models import Document, Image
 from uploader.serializers import DocumentUploadSerializer, ImageUploadSerializer
 
@@ -13,6 +13,11 @@ class DocumentUploadViewSet(CreateViewSet):
     serializer_class = DocumentUploadSerializer
     parser_classes = [parsers.FormParser, parsers.MultiPartParser]
 
+    def get_permissions(self):
+        if self.action == 'create':
+            return [AllowAny()]
+        return [IsAuthenticated()]
+    
 
 class ImageUploadViewSet(CreateViewSet):
     queryset = Image.objects.all() #  pylint: disable=no-member

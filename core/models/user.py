@@ -9,7 +9,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
-from uploader.models import Image
+from uploader.models import Document
 
 class UserManager(BaseUserManager):
 
@@ -90,7 +90,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=jsonfield_default_value
     )
     document = models.ForeignKey(
-        Image,
+        Document,
         related_name="+",
         on_delete=models.CASCADE,
         null=True,

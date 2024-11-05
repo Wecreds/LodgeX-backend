@@ -1,1 +1,2 @@
 from .update_payment_price import update_payment_price
+from .update_last_login import update_last_login

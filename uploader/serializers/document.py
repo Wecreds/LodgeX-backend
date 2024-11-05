@@ -7,7 +7,7 @@ from uploader.models import Document
 class DocumentUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ["attachment_key", "file", "description", "uploaded_on"]
+        fields = ["attachment_key", "file", "description", "uploaded_on", 'id']
         read_only_fields = ["attachment_key", "uploaded_on"]
         extra_kwargs = {"file": {"write_only": True}}
 
