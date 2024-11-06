@@ -6,8 +6,8 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from django.contrib.auth import authenticate
 
-from core.models import User
-from core.serializers import UserSerializer
+from core.serializers import BookingSerializer, UserSerializer
+from core.models import User, Booking
 
 from uploader.models import Document
 
@@ -59,3 +59,14 @@ class UserViewSet(ModelViewSet):
             return Response({"verified": True}, status=status.HTTP_200_OK)
         else:
             return Response({"verified": False}, status=status.HTTP_200_OK)
+
+    @action(detail=False, methods=["get"], permission_classes=[IsAuthenticated])
+    def my_bookings(self, request):
+        user = request.user
+        my_bookings = Booking.objects.all().filter(user=user)
+
+        if my_bookings.exists():
+            serialized_data = BookingSerializer(my_bookings, many=True).data
+            return Response({"bookings": serialized_data}, status=status.HTTP_200_OK)
+        else:
+            return Response({"bookings": []}, status=status.HTTP_200_OK)
