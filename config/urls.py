@@ -62,6 +62,8 @@ urlpatterns = [
     path("api/", include(router.urls)),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path('api/password_reset/', views.PasswordResetRequestView.as_view(), name='password-reset-request'),
+    path('api/password_reset/confirm/', views.PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
 ]
 
 urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)

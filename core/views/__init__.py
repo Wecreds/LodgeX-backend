@@ -12,3 +12,5 @@ from .feedback import FeedbackViewSet
 from .booking_room import BookingRoomViewSet
 from .room_photo import RoomPhotoViewSet
 from .custom.check_discount_code import CheckDiscountCouponView
+from .custom.password_reset_confirmation import PasswordResetConfirmView
+from .custom.password_reset_request import PasswordResetRequestView

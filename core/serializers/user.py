@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, ValidationError
 
 from core.models import User
 
@@ -12,7 +12,7 @@ class UserSerializer(ModelSerializer):
         current_user = self.context.get('request').user
             
         if instance != current_user:
-            raise serializers.ValidationError("You can only alter your own user.")
+            raise ValidationError("You can only alter your own user.")
             
         validated_data.pop('password', None)
         

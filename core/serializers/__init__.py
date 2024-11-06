@@ -11,3 +11,4 @@ from .payment import PaymentSerializer
 from .feedback import FeedbackSerializer
 from .booking_room import BookingRoomSerializer
 from .room_photo import RoomPhotoSerializer
+from .password_reset import PasswordResetConfirmSerializer, PasswordResetRequestSerializer
