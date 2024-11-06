@@ -5,6 +5,7 @@
   "python.autoComplete.extraPaths": [
     "${workspaceFolder}/__pypackages__/3.12/lib"
   ],
+  "peacock.color": "#832561",
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#ab307e",
     "activityBar.background": "#ab307e",
@@ -24,6 +25,6 @@
     "titleBar.inactiveBackground": "#83256199",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#832561"
+  "peacock.remoteColor": "#832561"
   
 }
