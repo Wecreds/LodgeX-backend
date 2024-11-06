@@ -70,3 +70,13 @@ class UserViewSet(ModelViewSet):
             return Response({"bookings": serialized_data}, status=status.HTTP_200_OK)
         else:
             return Response({"bookings": []}, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=["patch"], permission_classes=[IsAuthenticated])
+    def change_password(self, request):
+        user = request.user
+        password = request.data.get("password")
+
+        user.set_password(password)
+        user.save()
+        return Response({"message": "Password changed successfully."}, status=status.HTTP_200_OK)
+
