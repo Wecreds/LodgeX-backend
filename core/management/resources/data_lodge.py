@@ -7,7 +7,7 @@ lodges = [
 
 lodgeAmendities = [
     {"name": "Free parking", "icon": "fa-solid fa-square-parking", "lodge": 1},
-    {"name": "Pet friendly", "icon": "fa-paw", "lodge": 1},
+    {"name": "Pet friendly", "icon": "fa-solid fa-paw", "lodge": 1},
     {"name": "Free WiFi", "icon": "fa-solid fa-wifi", "lodge": 1},
     {"name": "Family rooms", "icon": "fa-solid fa-people-group", "lodge": 1},
     {"name": "Breakfast", "icon": "fa-solid fa-mug-saucer", "lodge": 1},
@@ -24,7 +24,7 @@ lodgePoliticies = [
 ]
 
 lodgePaymentsMethods = [
-    {"method": "This establishment accepts PIX payments.", "icon": "fa-solid fa-pix", "lodge": 1},
+    {"method": "This establishment accepts PIX payments.", "icon": "fa-brands fa-pix", "lodge": 1},
     {"method": "This establishment accepts cash.", "icon": "fa-solid fa-money-bills", "lodge": 1}
 ]
 
