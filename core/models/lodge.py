@@ -1,13 +1,18 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from uploader.models import Image
-
 
 class Lodge(models.Model):
     lodge_name = models.CharField(max_length=100)
     lodge_location = models.TextField()
     lodge_description = models.TextField()
     lodge_landlord = models.CharField(max_length=100)
+
+    def save(self, *args, **kwargs):
+        if Lodge.objects.exists() and not self.pk:
+            raise ValidationError("Only one Lodge instance is allowed.")
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.lodge_name} - {self.lodge_location}"

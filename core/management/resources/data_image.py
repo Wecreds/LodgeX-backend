@@ -13,5 +13,5 @@ images = [
     { 'file': 'public/12.jpg', 'description': '12' },
     { 'file': 'public/13.jpg', 'description': '13' },
     { 'file': 'public/14.jpg', 'description': '14' },
-    { 'file': 'public/logo.jpg', 'description': 'logo' },
+    { 'file': 'public/logo.png', 'description': 'logo' },
 ]

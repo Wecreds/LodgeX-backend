@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from core.models import Lodge, LodgeAmenity, LodgePolicy, LodgePaymentMethod, LodgePhoto
+from uploader.serializers import ImageSerializer
 
 class LodgeAmenitySerializer(ModelSerializer):
     class Meta:
@@ -16,6 +17,13 @@ class LodgePaymentMethodSerializer(ModelSerializer):
         model = LodgePaymentMethod
         fields = ['id', 'method', 'icon']
 
+class LodgePhotoSerializer(ModelSerializer):
+    photo = ImageSerializer()  # Usa o serializer de `Image` para incluir os atributos da FK
+
+    class Meta:
+        model = LodgePhoto
+        fields = ['id', 'photo']
+
 class LodgeSerializer(ModelSerializer):
     amenities = LodgeAmenitySerializer(many=True, read_only=True)
     policies = LodgePolicySerializer(many=True, read_only=True)
@@ -23,13 +31,5 @@ class LodgeSerializer(ModelSerializer):
 
     class Meta:
         model = Lodge
-        fields = [
-            'id', 'lodge_name', 'lodge_location', 'lodge_description', 'lodge_landlord', 
-            'amenities', 'policies', 'payment_methods'
-        ]
+        fields = ['id', 'lodge_name', 'lodge_location', 'lodge_description', 'lodge_landlord', 'amenities', 'policies', 'payment_methods']
 
-class LodgePhotoSerializer(ModelSerializer):
-    class Meta:
-        model = LodgePhoto
-        fields = "__all__"
-        depth = 1
