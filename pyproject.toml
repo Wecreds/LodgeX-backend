@@ -1,5 +1,5 @@
 [project]
-name = "BellaVista-backend"
+name = "LodgeX-backend"
 version = "0.1.0"
 description = "Default template for PDM package"
 authors = [

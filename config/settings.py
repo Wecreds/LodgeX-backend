@@ -162,8 +162,8 @@ EMAIL_HOST_USER = "wecredsbr@gmail.com"
 EMAIL_HOST_PASSWORD = SMTP_PASSWORD
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Bella Vista API",
-    "DESCRIPTION": "github.com/Wecreds/BellaVista-docs",
+    "TITLE": "LodgeX API",
+    "DESCRIPTION": "github.com/Wecreds/LodgeX-docs",
     "VERSION": "1.0.0",
 }
 
