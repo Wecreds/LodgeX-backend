@@ -11,5 +11,4 @@ from .feedback import Feedback
 from .booking_room import BookingRoom
 from .room_photo import RoomPhoto
 from .payment import Payment
-from .lodge_photo import LodgePhoto
-from .lodge import Lodge, LodgePolicy, LodgePaymentMethod, LodgeAmenity
+from .lodge import Lodge, LodgePolicy, LodgePaymentMethod, LodgeAmenity, LodgePhoto

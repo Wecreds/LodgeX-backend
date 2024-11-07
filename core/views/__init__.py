@@ -14,5 +14,4 @@ from .room_photo import RoomPhotoViewSet
 from .custom.check_discount_code import CheckDiscountCouponView
 from .custom.password_reset_confirmation import PasswordResetConfirmView
 from .custom.password_reset_request import PasswordResetRequestView
-from .lodge_photo import LodgePhotoViewSet
-from .lodge import LodgeViewSet, LodgePolicyViewSet, LodgePaymentMethodViewSet, LodgeAmenityViewSet
+from .lodge import LodgeViewSet, LodgePolicyViewSet, LodgePaymentMethodViewSet, LodgeAmenityViewSet, LodgePhotoViewSet

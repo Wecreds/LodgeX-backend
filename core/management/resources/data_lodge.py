@@ -4,6 +4,7 @@ lodges = [
     "lodge_description": "Gajah is a holiday home with a garden, located in Joinville, 5 km from National Museum of Immigration and Colonization. The property is 6 km from Shopping Mueller Joinville and free private parking is available. The accommodation features a kitchen with an oven and microwave. A flat-screen TV is also available. The nearest airport is Lauro Carneiro de Loyola Airport, 10 km from Gajah.",
     "lodge_landlord": "Gisela",}
 ]
+
 lodgeAmendities = [
     {"name": "Free parking", "icon": "fa-solid fa-square-parking", "lodge": 1},
     {"name": "Pet friendly", "icon": "fa-paw", "lodge": 1},
@@ -25,4 +26,22 @@ lodgePoliticies = [
 lodgePaymentsMethods = [
     {"method": "This establishment accepts PIX payments.", "icon": "fa-solid fa-pix", "lodge": 1},
     {"method": "This establishment accepts cash.", "icon": "fa-solid fa-money-bills", "lodge": 1}
+]
+
+lodge_photos = [
+    {"photo": "1", "lodge": 1},
+    {"photo": "2", "lodge": 1},
+    {"photo": "3", "lodge": 1},
+    {"photo": "4", "lodge": 1},
+    {"photo": "5", "lodge": 1},
+    {"photo": "6", "lodge": 1},
+    {"photo": "7", "lodge": 1},
+    {"photo": "8", "lodge": 1},
+    {"photo": "9", "lodge": 1},
+    {"photo": "10", "lodge": 1},
+    {"photo": "11", "lodge": 1},
+    {"photo": "12", "lodge": 1},
+    {"photo": "13", "lodge": 1},
+    {"photo": "14", "lodge": 1},
+    {"photo": "15", "lodge": 1},
 ]

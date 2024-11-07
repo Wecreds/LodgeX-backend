@@ -1,9 +1,9 @@
 from django.core.management.base import BaseCommand
-from core.models import Category, Room, Service, DiscountCoupon, User, Booking, BookingService, Cancellation, BookingRoom, RoomAvailability, Payment, Lodge, LodgeAmenity, LodgePaymentMethod, LodgePolicy
+from core.models import Category, Room, Service, DiscountCoupon, User, Booking, BookingService, Cancellation, BookingRoom, RoomAvailability, Payment, Lodge, LodgeAmenity, LodgePaymentMethod, LodgePolicy, LodgePhoto
 from uploader.models import Image
 from django.contrib.auth.models import Group, Permission
 
-from core.management.resources import categories, rooms, services, discount_coupons, groups, users, bookings, booking_services, cancellations, booking_rooms, rooms_availability, payments, images, lodges, lodgeAmendities, lodgePoliticies, lodgePaymentsMethods
+from core.management.resources import categories, rooms, services, discount_coupons, groups, users, bookings, booking_services, cancellations, booking_rooms, rooms_availability, payments, images, lodges, lodgeAmendities, lodgePoliticies, lodgePaymentsMethods, lodge_photos
 
 class Command(BaseCommand):
     help = 'Populates the database.'
@@ -199,8 +199,6 @@ class Command(BaseCommand):
             Image.objects.bulk_create(images_instances)
             self.stdout.write(self.style.SUCCESS('Images populated successfully.'))
 
-        self.stdout.write('Successfully populated the database.')
-
         if Lodge.objects.exists():
             self.stdout.write(self.style.WARNING('Lodges already exist in the database.'))
         else:
@@ -246,5 +244,24 @@ class Command(BaseCommand):
             
             LodgePaymentMethod.objects.bulk_create(lodge_payment_methods_instances)
             self.stdout.write(self.style.SUCCESS('Lodge Payment Methods populated successfully.'))
+        
+        if LodgePhoto.objects.exists():
+            self.stdout.write(self.style.WARNING('Lodge Photos already exist in the database.'))
+        else:
+            lodge_photos_instances = []
+            for lodge_photo in lodge_photos:
+                lodge_instance = Lodge.objects.get(id=lodge_photo["lodge"])
+                image_instance = Image.objects.get(id=lodge_photo["photo"])
+                lodge_photo_instance = LodgePhoto(
+                    photo=image_instance,
+                    lodge=lodge_instance
+                )
+                lodge_photos_instances.append(lodge_photo_instance)
+
+            LodgePhoto.objects.bulk_create(lodge_photos_instances)
+            self.stdout.write(self.style.SUCCESS('Lodge Photos populated successfully.'))
+
+        self.stdout.write('Successfully populated the database.')
+
             
  
