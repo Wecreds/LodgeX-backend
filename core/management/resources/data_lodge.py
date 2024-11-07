@@ -19,7 +19,7 @@ lodgeAmendities = [
 lodgePoliticies = [
     {"title": "Check in", "description": "From 14:00 to 00:00", "icon": "fa-solid fa-right-to-bracket", "lodge": 1},
     {"title": "Check out", "description": "From 06:00 to 11:00", "icon": "fa-solid fa-right-to-bracket rotate-180", "lodge": 1},
-    {"title": "Children's policy", "description": "Children are not welcome.", "icon": "fa-solid fa-xmark", "lodge": 1},
+    {"title": "Children's policy", "description": "Children at least 13 years old are welcome.", "icon": "fa-solid fa-children", "lodge": 1},
     {"title": "Quiet hours", "description": "Quiet hours are between 22:00 and 07:00.", "icon": "fa-solid fa-moon", "lodge": 1},
 ]
 

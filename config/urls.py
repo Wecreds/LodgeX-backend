@@ -69,6 +69,9 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path('api/password_reset/', views.PasswordResetRequestView.as_view(), name='password-reset-request'),
     path('api/password_reset/confirm/', views.PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
+    path('api/available/', views.AvailableRoomsView.as_view(), name='available_rooms'),
+    path('api/check-availability/', views.RoomAvailabilityCheckView.as_view(), name='room_availability_check'),
+    path('api/booking_create/', views.BookingCreateView.as_view(), name='booking_create'),
 ]
 
 urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)

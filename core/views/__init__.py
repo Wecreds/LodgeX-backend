@@ -15,3 +15,6 @@ from .custom.check_discount_code import CheckDiscountCouponView
 from .custom.password_reset_confirmation import PasswordResetConfirmView
 from .custom.password_reset_request import PasswordResetRequestView
 from .lodge import LodgeViewSet, LodgePolicyViewSet, LodgePaymentMethodViewSet, LodgeAmenityViewSet, LodgePhotoViewSet
+from .custom.room_availability_check import RoomAvailabilityCheckView
+from .custom.available_rooms import AvailableRoomsView
+from .custom.booking_create import BookingCreateView
