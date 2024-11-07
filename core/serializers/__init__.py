@@ -12,3 +12,5 @@ from .feedback import FeedbackSerializer
 from .booking_room import BookingRoomSerializer
 from .room_photo import RoomPhotoSerializer
 from .password_reset import PasswordResetConfirmSerializer, PasswordResetRequestSerializer
+from .lodge_photo import LodgePhotoSerializer
+from .lodge import LodgeSerializer, LodgePolicySerializer, LodgePaymentMethodSerializer, LodgeAmenitySerializer

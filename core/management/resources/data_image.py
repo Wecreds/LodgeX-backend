@@ -1,0 +1,17 @@
+images = [
+    { 'file': 'public/1.jpg', 'description': '1' },
+    { 'file': 'public/2.jpg', 'description': '2' },
+    { 'file': 'public/3.jpg', 'description': '3' },
+    { 'file': 'public/4.jpg', 'description': '4' },
+    { 'file': 'public/5.jpg', 'description': '5' },
+    { 'file': 'public/6.jpg', 'description': '6' },
+    { 'file': 'public/7.jpg', 'description': '7' },
+    { 'file': 'public/8.jpg', 'description': '8' },
+    { 'file': 'public/9.jpg', 'description': '9' },
+    { 'file': 'public/10.jpg', 'description': '10' },
+    { 'file': 'public/11.jpg', 'description': '11' },
+    { 'file': 'public/12.jpg', 'description': '12' },
+    { 'file': 'public/13.jpg', 'description': '13' },
+    { 'file': 'public/14.jpg', 'description': '14' },
+    { 'file': 'public/logo.jpg', 'description': 'logo' },
+]

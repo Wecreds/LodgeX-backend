@@ -51,6 +51,11 @@ router.register(r"feedbacks", views.FeedbackViewSet)
 router.register(r"bookings-rooms", views.BookingRoomViewSet)
 router.register(r"room-photos", views.RoomPhotoViewSet)
 router.register(r"users", views.UserViewSet)
+router.register(r"lodge-photos", views.LodgePhotoViewSet)
+router.register(r"lodges", views.LodgeViewSet)
+router.register(r"lodge-policies", views.LodgePolicyViewSet)
+router.register(r"lodge-payment-methods", views.LodgePaymentMethodViewSet)
+router.register(r"lodge-amenities", views.LodgeAmenityViewSet)
 
 urlpatterns = [
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),

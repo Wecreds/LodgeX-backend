@@ -1,8 +1,9 @@
 from django.core.management.base import BaseCommand
-from core.models import Category, Room, Service, DiscountCoupon, User, Booking, BookingService, Cancellation, BookingRoom, RoomAvailability, Payment
+from core.models import Category, Room, Service, DiscountCoupon, User, Booking, BookingService, Cancellation, BookingRoom, RoomAvailability, Payment, Lodge, LodgeAmenity, LodgePaymentMethod, LodgePolicy
+from uploader.models import Image
 from django.contrib.auth.models import Group, Permission
 
-from core.management.resources import categories, rooms, services, discount_coupons, groups, users, bookings, booking_services, cancellations, booking_rooms, rooms_availability, payments
+from core.management.resources import categories, rooms, services, discount_coupons, groups, users, bookings, booking_services, cancellations, booking_rooms, rooms_availability, payments, images, lodges, lodgeAmendities, lodgePoliticies, lodgePaymentsMethods
 
 class Command(BaseCommand):
     help = 'Populates the database.'
@@ -190,4 +191,60 @@ class Command(BaseCommand):
 
             self.stdout.write(self.style.SUCCESS('Payments populated successfully.'))
 
+
+        if Image.objects.exists():
+            self.stdout.write(self.style.WARNING('Images already exist in the database.'))
+        else:
+            images_instances = [Image(**img) for img in images]
+            Image.objects.bulk_create(images_instances)
+            self.stdout.write(self.style.SUCCESS('Images populated successfully.'))
+
         self.stdout.write('Successfully populated the database.')
+
+        if Lodge.objects.exists():
+            self.stdout.write(self.style.WARNING('Lodges already exist in the database.'))
+        else:
+            lodges_instances = [Lodge(**lodge) for lodge in lodges]
+            Lodge.objects.bulk_create(lodges_instances)
+            self.stdout.write(self.style.SUCCESS('Lodges populated successfully.'))
+        
+        if LodgeAmenity.objects.exists():
+            self.stdout.write(self.style.WARNING('Lodge Amenities already exist in the database.'))
+        else:
+            lodge_amenities_instances = []
+            for lodge_amenity in lodgeAmendities:
+                lodge_instance = Lodge.objects.get(id=lodge_amenity["lodge"])
+                lodge_amenity["lodge"] = lodge_instance
+                lodge_amenity_instance = LodgeAmenity(**lodge_amenity)
+                lodge_amenities_instances.append(lodge_amenity_instance)
+            
+            LodgeAmenity.objects.bulk_create(lodge_amenities_instances)
+            self.stdout.write(self.style.SUCCESS('Lodge Amenities populated successfully.'))
+        
+        if LodgePolicy.objects.exists():
+            self.stdout.write(self.style.WARNING('Lodge Policies already exist in the database.'))
+        else:
+            lodge_policies_instances = []
+            for lodge_policy in lodgePoliticies:
+                lodge_instance = Lodge.objects.get(id=lodge_policy["lodge"])
+                lodge_policy["lodge"] = lodge_instance
+                lodge_policy_instance = LodgePolicy(**lodge_policy)
+                lodge_policies_instances.append(lodge_policy_instance)
+            
+            LodgePolicy.objects.bulk_create(lodge_policies_instances)
+            self.stdout.write(self.style.SUCCESS('Lodge Policies populated successfully.'))
+
+        if LodgePaymentMethod.objects.exists():
+            self.stdout.write(self.style.WARNING('Lodge Payment Methods already exist in the database.'))
+        else:
+            lodge_payment_methods_instances = []
+            for lodge_payment_method in lodgePaymentsMethods:
+                lodge_instance = Lodge.objects.get(id=lodge_payment_method["lodge"])
+                lodge_payment_method["lodge"] = lodge_instance
+                lodge_payment_method_instance = LodgePaymentMethod(**lodge_payment_method)
+                lodge_payment_methods_instances.append(lodge_payment_method_instance)
+            
+            LodgePaymentMethod.objects.bulk_create(lodge_payment_methods_instances)
+            self.stdout.write(self.style.SUCCESS('Lodge Payment Methods populated successfully.'))
+            
+ 
