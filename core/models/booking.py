@@ -9,7 +9,7 @@ class Booking(models.Model):
         COMPLETED = 3, "COMPLETED"
 
     booking_status = models.IntegerField(choices=BookingStatus, default=BookingStatus.ACTIVE, null=True, blank=True)
-    booking_date = models.DateField(default=timezone.now, null=False, blank=False)
+    booking_date = models.DateTimeField(default=timezone.now, null=False, blank=False)
     discount_coupon = models.ForeignKey(
         DiscountCoupon, 
         on_delete=models.PROTECT, 

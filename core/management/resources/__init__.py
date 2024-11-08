@@ -12,3 +12,4 @@ from .data_room_availability import rooms_availability
 from .data_payment import payments
 from .data_image import images
 from .data_lodge import lodges, lodgeAmendities, lodgePoliticies, lodgePaymentsMethods, lodge_photos
+from .data_room_photo import room_photos

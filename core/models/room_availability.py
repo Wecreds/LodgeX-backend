@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MinValueValidator
+
 from core.models import Booking, Room
 
 class RoomAvailability(models.Model):
@@ -10,6 +12,7 @@ class RoomAvailability(models.Model):
     end_date = models.DateField(null=False, blank=False)
     room_status = models.IntegerField(choices=RoomStatus, default=RoomStatus.RESERVED, null=False, blank=False)
     reason = models.CharField(max_length=200, null=True, blank=True)
+    guest_count = models.IntegerField(default=1, validators= [MinValueValidator(1)])
     booking = models.ForeignKey(
         Booking, 
         on_delete=models.DO_NOTHING, 

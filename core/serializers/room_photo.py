@@ -6,3 +6,4 @@ class RoomPhotoSerializer(ModelSerializer):
     class Meta:
         model = RoomPhoto
         fields = "__all__"
+        depth = 1

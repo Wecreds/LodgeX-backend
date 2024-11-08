@@ -1,19 +1,20 @@
-from rest_framework.serializers import ModelSerializer, CharField, IntegerField, DateField, ValidationError
-from core.models import Booking, Room, RoomAvailability
-from .room_availability import RoomAvailabilitySerializer 
+from rest_framework import serializers
+from core.models import Booking, RoomAvailability, Room
+from .room_availability import RoomAvailabilitySerializer
 
-class BookingSerializer(ModelSerializer):
+class BookingSerializer(serializers.ModelSerializer):
     room_availability = RoomAvailabilitySerializer(source='roomavailability_set', many=True, read_only=True)
-    user_name = CharField(source='user.name', read_only=True)
-    booking_status = CharField(source='get_booking_status_display')
-    room_id = IntegerField(write_only=True)
-    start_date = DateField()
-    end_date = DateField()
+    user_name = serializers.CharField(source='user.name', read_only=True)
+    booking_status = serializers.CharField(source='get_booking_status_display')
+    
+    room_id = serializers.IntegerField(write_only=True)  
+    start_date = serializers.DateField(write_only=True)  
+    end_date = serializers.DateField(write_only=True) 
 
     class Meta:
         model = Booking
         fields = ['id', 'booking_status', 'booking_date', 'discount_coupon', 'user_name', 'room_availability', 'room_id', 'start_date', 'end_date']
-
+    
     def validate(self, data):
         room = Room.objects.get(id=data['room_id'])
         start_date = data['start_date']
@@ -27,7 +28,7 @@ class BookingSerializer(ModelSerializer):
         )
 
         if room_availability.exists():
-            raise ValidationError("The room is not available for the selected dates.")
+            raise serializers.ValidationError("The room is not available for the selected dates.")
 
         return data
 

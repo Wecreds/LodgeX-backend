@@ -7,7 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 from django.contrib.auth import authenticate
 
 from core.serializers import BookingSerializer, UserSerializer
-from core.models import User, Booking
+from core.models import User, Booking, Payment
 
 from uploader.models import Document
 
@@ -63,11 +63,26 @@ class UserViewSet(ModelViewSet):
     @action(detail=False, methods=["get"], permission_classes=[IsAuthenticated])
     def my_bookings(self, request):
         user = request.user
-        my_bookings = Booking.objects.all().filter(user=user)
+        my_bookings = Booking.objects.filter(user=user)
 
         if my_bookings.exists():
-            serialized_data = BookingSerializer(my_bookings, many=True).data
-            return Response({"bookings": serialized_data}, status=status.HTTP_200_OK)
+            bookings_with_payments = []
+            
+            for booking in my_bookings:
+                payment = Payment.objects.filter(booking=booking).first()  
+                booking_data = BookingSerializer(booking).data  
+                
+                if payment:
+                    booking_data['payment_status'] = payment.get_payment_status_display()  
+                    booking_data['payment_date'] = payment.payment_date 
+                else:
+                    booking_data['payment_status'] = 'No payment'
+                    booking_data['payment_date'] = None
+
+                bookings_with_payments.append(booking_data)
+            
+            return Response({"bookings": bookings_with_payments}, status=status.HTTP_200_OK)
+        
         else:
             return Response({"bookings": []}, status=status.HTTP_200_OK)
     

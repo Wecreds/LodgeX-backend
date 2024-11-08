@@ -18,7 +18,7 @@ class LodgePaymentMethodSerializer(ModelSerializer):
         fields = ['id', 'method', 'icon']
 
 class LodgePhotoSerializer(ModelSerializer):
-    photo = ImageSerializer()  # Usa o serializer de `Image` para incluir os atributos da FK
+    photo = ImageSerializer() 
 
     class Meta:
         model = LodgePhoto

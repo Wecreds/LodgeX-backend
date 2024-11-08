@@ -2,7 +2,7 @@ discount_coupons = [
     {
         "code": "Easter",
         "discount_percentage": 30,
-        "expiration_date": "2024-04-30", # Expired
+        "expiration_date": "2024-04-30",
         "description": "30% discount for easter.",
     },
     {
